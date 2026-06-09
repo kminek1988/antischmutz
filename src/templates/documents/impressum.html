@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+   <div class="scene">
+    <h1>Impressum</h1>
+   </div>
+    <p>{{ impressum.content|safe }}</p>
+</div>
+{% endblock %}

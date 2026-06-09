@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .intro {
+  
+        margin-top: 20vh;
+    }
+</style>
+<div class="container-fluid intro fade-in">
+    <div class="row p-5">
+    <h1>{{ service.name }}</h1>
+    <hr>    
+        <div class="col-md-8 col-sm-12 col-xs-12 d-block mt-5 fade-in">
+            
+            <p>{{ service.description | safe }}</p>
+        </div>
+    </div>
+    <div class="row fade-in">
+        {% for image in service.images.all %}
+            <div class="col-md-6 col-sm-12 col-xs-12 d-block mt-5">
+             
+                <img src="{{ image.image1.url }}" alt="{{ image.title }}" class="img-fluid">
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 d-block mt-5">
+              
+                <img src="{{ image.image2.url }}" alt="{{ image.title }}" class="img-fluid">
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row mt-5 fade-in">
+        <div class="col-md-12">
+            {% if service.banner %}
+                <img src="{{ service.banner.url }}" alt="{{ service.name }}" class="img-fluid">
+            {% endif %}
+        </div>
+    </div>
+    {% include 'contact.html' %}
+</div>
+{% endblock %}

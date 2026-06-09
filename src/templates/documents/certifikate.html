@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="pdf-section py-5 fade-in">
+  <div class="container-fluid scene">
+    <h1 class="mb-4">Dokument PDF</h1>
+
+    <div class="pdf-wrapper">
+{% for o in objects %}
+  <iframe
+    src="{% url 'certifikat_pdf' o.pk %}"
+    width="100%"
+    height="900px"
+    style="border: none;"
+  ></iframe>
+{% endfor %}
+    </div>
+
+    <div class="mt-3">
+      <a href="{{ object.file.url }}" target="_blank" class="btn btn-primary">
+        Otwórz PDF w nowej karcie
+      </a>
+
+      <a href="{{ object.file.url }}" download class="btn btn-outline-secondary">
+        Pobierz PDF
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

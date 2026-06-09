@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+ <div class="row my-5" id="about">
+      <div class="scene fade-left">
+        <h1>Über uns</h1>
+      </div>
+        <div class="col-md-6 col-sm-12 col-xs-12 my-3 d-flex align-items-center justify-content-center fade-left">
+
+            <p class="fs-3 p-2 text-end d-block">{{ about_section.content|safe }}</p>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12 my-3 position-relative
+        d-flex align-items-center justify-content-start fade-right">
+            <img src="{{ about_section.image.url }}" alt="" class="img-fluid h-100">
+            <img src="{% static 'img/abstra3.png' %}" alt="" 
+            class="position-absolute z-n1 bottom-0 end-0 opacity-25">
+        </div>
+    </div>
+    {% include 'contact.html' %}
+{% endblock %}

@@ -1,0 +1,215 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container-fluid fade-group">
+
+    <div class="row d-flex gap-0 hero fade-in">
+      {% for s in services%}
+      {% if s.image %}
+       <div class="col-md-6 col-sm-12 col-xs-12 d-block m-0 p-0
+         position-relative d-flex flex-column justify-content-center align-items-center"
+        style="background-image: url('{{s.image.url}}');
+      background-size: cover;
+      background-position: center;">
+<div class="d-block p-3 m-3 card">
+       <h1>{{ s.name }}</h1>
+     <p>{{ s.hero_tekst|safe }}</p>
+     <a href="{{ s.get_absolute_url }}" class="btn my-button">Mehr</a>  
+</div>
+
+ 
+    </div>
+      {% endif %}
+      {% endfor%}
+
+
+
+    </div>
+
+    
+<div class="glow"></div>
+    
+    <div class="row my-5" id="about">
+      <div class="scene fade-left">
+        <h1>Über uns</h1>
+      </div>
+        <div class="col-md-6 col-sm-12 col-xs-12 my-3 d-flex align-items-center justify-content-center fade-left">
+
+            <p class="fs-3 p-2 text-end d-block">{{ about_section.content|safe }}</p>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12 my-3 position-relative
+        d-flex align-items-center justify-content-start fade-right">
+            <img src="{{ about_section.image.url }}" alt="" class="img-fluid h-100">
+            <img src="{% static 'img/abstra3.png' %}" alt="" 
+            class="position-absolute z-n1 bottom-0 end-0 opacity-25">
+        </div>
+    </div>
+
+<div class="row cta my-5 fade-in">
+
+<div class="fs-3 container d-flex justify-content-center pb-5 w-75">
+  {{cta_section.content|safe}}
+
+</div>
+<div class="position-relative d-flex justify-content-center">
+  <img src="{{cta_section.banner.url}}" alt="" class="img-fluid">
+  <img src="{% static 'img/abstra2.png' %}" alt="" 
+  class="position-absolute z-n1 bottom-0 end-0 opacity-25">
+</div>
+
+</div>
+{% include 'contact.html' %}
+
+
+</div>
+
+<div class="dual-loop-widget">
+  <!-- Split Background Screen Layers -->
+  <div class="loop-bg-left"></div>
+  <div class="loop-bg-right"></div>
+  
+  <div class="loop-container">
+    <!-- Left Column: Animating Word Ticker -->
+    <div class="loop-column left">
+      <div class="loop-ticker">
+        <div class="loop-track">
+          <!-- Active state handled dynamically by JS -->
+        <div class="loop-item">Abluftanlagen</div>
+          <div class="loop-item">Fassaden</div>
+          <div class="loop-item">Pflastersteine</div>
+          <div class="loop-item">Küchenhygiene</div>
+          <div class="loop-item">Außenflächen</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Right Column: Static Statement -->
+    <div class="loop-column right">
+ <h2 class="loop-static">fachgerecht gereinigt.</h2>
+    </div>
+  </div>
+
+  <!-- Redesignee Snip Credit Pill -->
+  <a href="https://redesignee.com" target="_blank" class="redesignee-credit">
+    Get more lightweight code snippets
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const track = document.querySelector('.loop-track');
+  const bgLeft = document.querySelector('.loop-bg-left');
+  const bgRight = document.querySelector('.loop-bg-right');
+  const staticText = document.querySelector('.loop-static');
+  
+  if (!track || !bgLeft || !bgRight || !staticText) return;
+
+  // Clean Config Palette Mapping (Matches sequential order of original items)
+  const colorPalette = [
+    { leftBg: '#2e6ee6', rightBg: '#fce4ec' }, // Comfort colors
+    { leftBg: '#e65c2e', rightBg: '#d9edf7' }, // Design colors
+    { leftBg: '#1a4d2e', rightBg: '#f5f2ed' }  // Quality colors
+  ];
+
+  const speed = 800;  // CSS Transition duration
+  const delay = 2500; // Delay state
+  
+  // Create an array of real operational items 
+  let originalItems = Array.from(track.querySelectorAll('.loop-item'));
+  if (originalItems.length < 2) return;
+
+  // Seamless Infinit-Loop Clone Prep
+  const clonesStart = [
+    originalItems[originalItems.length - 2].cloneNode(true),
+    originalItems[originalItems.length - 1].cloneNode(true)
+  ];
+  const clonesEnd = [
+    originalItems[0].cloneNode(true),
+    originalItems[1].cloneNode(true)
+  ];
+
+  // Re-inject tracks cleanly with wrappers
+  track.innerHTML = '';
+  clonesStart.forEach(clone => track.appendChild(clone));
+  originalItems.forEach(item => track.appendChild(item));
+  clonesEnd.forEach(clone => track.appendChild(clone));
+
+  const allItems = track.querySelectorAll('.loop-item');
+  let currentIndex = 2; // Offset tracking past the initial clones
+
+  function syncEnvironment(index, animate = true) {
+    const activeItem = allItems[index];
+    if (!activeItem) return;
+
+    // Calculate palette layout relative loops
+    const paletteIndex = (index - 2 + originalItems.length) % originalItems.length;
+    const colors = colorPalette[paletteIndex];
+
+    if (!animate) {
+      bgLeft.style.transition = 'none';
+      bgRight.style.transition = 'none';
+      staticText.style.transition = 'none';
+    }
+
+    // Apply synchronized color states
+    bgLeft.style.backgroundColor = colors.leftBg;
+    bgRight.style.backgroundColor = colors.rightBg;
+    staticText.style.color = colors.leftBg;
+
+    if (!animate) {
+      void bgLeft.offsetWidth; // Force Reflow
+      bgLeft.style.transition = '';
+      bgRight.style.transition = '';
+      staticText.style.transition = '';
+    }
+
+    // Toggle styling scale filters
+    allItems.forEach((item, i) => {
+      if (!animate) item.style.transition = 'none';
+      item.classList.toggle('active', i === index);
+      if (!animate) {
+        void item.offsetWidth;
+        item.style.transition = '';
+      }
+    });
+  }
+
+  function updateTransformPosition() {
+    const h = allItems[0].offsetHeight;
+    track.style.transform = `translateY(-${(currentIndex - 1) * h}px)`;
+  }
+
+  window.addEventListener('resize', () => {
+    updateTransformPosition();
+  });
+
+  // Setup initial active ecosystem state
+  updateTransformPosition();
+  syncEnvironment(currentIndex, false);
+
+  function startCycleLoop() {
+    currentIndex++;
+    track.classList.add('animating');
+    updateTransformPosition();
+    syncEnvironment(currentIndex, true);
+
+    setTimeout(() => {
+      // If we land on an terminal buffer index, reset timeline instantly
+      if (currentIndex >= originalItems.length + 2) {
+        track.classList.remove('animating');
+        currentIndex = 2;
+        updateTransformPosition();
+        syncEnvironment(currentIndex, false);
+      }
+      setTimeout(startCycleLoop, delay);
+    }, speed);
+  }
+
+  setTimeout(startCycleLoop, delay);
+});
+</script>
+{% endblock %}
