@@ -3,13 +3,7 @@
 {% load static %}
 
 {% block content %}
-<style>
-.about-image {
-  
-  position: absolute;
-  z-index: -100;
-}
-</style>
+
 
 <div class="container-fluid fade-group">
 
@@ -46,19 +40,22 @@
       <div class="scene fade-left">
         <h1>Über uns</h1>
       </div>
-        <div class="col-md-7 offset-md-3 col-sm-12 col-xs-12 my-3 d-flex align-items-center 
+        <div class="col-md-6 col-sm-12 col-xs-12 my-3 d-flex align-items-center 
         ustify-content-center fade-left">
 
             <p class="fs-3 p-5 d-block"
             style="text-align: left;
-            background-color: rgba(0,0,0,0.7);">
+            background-color: rgba(0,0,0,0.9);">
             {{ about_section.on_home|safe }}</p>
      
       
-            <img src="{{ about_section.image.url }}" alt="" class="img-fluid
-             h-100 about-image fade-right">
+          
             <img src="{% static 'img/abstra3.png' %}" alt="" 
             class="position-absolute z-n1 bottom-0 end-0 opacity-25">
+          </div>
+          <div class="col-md-6">
+              <img src="{{ about_section.image.url }}" alt="" class="img-fluid
+             h-100 about-image fade-right">
           </div>
     </div>
 
