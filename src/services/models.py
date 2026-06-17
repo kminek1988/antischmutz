@@ -32,7 +32,7 @@ class Images(models.Model):
     image1 = models.ImageField(upload_to='services/', verbose_name="Zdjęcie przed", null=True, blank=True)
     image2 = models.ImageField(upload_to='services/', verbose_name="Zdjęcie po", null=True, blank=True)
     title = models.CharField(max_length=255, verbose_name="Tytuł", null=True, blank=True)
-    
+    on_home = models.BooleanField(default=False, verbose_name="Pokaż na stronie głównej", null=True, blank=True)
     def __str__(self):
         return self.title
     

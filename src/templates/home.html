@@ -3,7 +3,13 @@
 {% load static %}
 
 {% block content %}
-
+<style>
+.about-image {
+  
+  position: absolute;
+  z-index: -100;
+}
+</style>
 
 <div class="container-fluid fade-group">
 
@@ -18,7 +24,10 @@
 <div class="d-block p-3 m-3 card">
        <h1>{{ s.name }}</h1>
      <p>{{ s.hero_tekst|safe }}</p>
-     <a href="{{ s.get_absolute_url }}" class="btn my-button">Mehr</a>  
+<div class="d-flex">
+       <a href="{{ s.get_absolute_url }}" class="btn my-button">Mehr</a>  
+  
+</div>
 </div>
 
  
@@ -37,23 +46,30 @@
       <div class="scene fade-left">
         <h1>Über uns</h1>
       </div>
-        <div class="col-md-6 col-sm-12 col-xs-12 my-3 d-flex align-items-center justify-content-center fade-left">
+        <div class="col-md-7 offset-md-3 col-sm-12 col-xs-12 my-3 d-flex align-items-center 
+        ustify-content-center fade-left">
 
-            <p class="fs-3 p-2 text-end d-block">{{ about_section.content|safe }}</p>
-        </div>
-        <div class="col-md-6 col-sm-12 col-xs-12 my-3 position-relative
-        d-flex align-items-center justify-content-start fade-right">
-            <img src="{{ about_section.image.url }}" alt="" class="img-fluid h-100">
+            <p class="fs-3 p-5 d-block"
+            style="text-align: left;
+            background-color: rgba(0,0,0,0.7);">{{ about_section.content|safe }}</p>
+     
+      
+            <img src="{{ about_section.image.url }}" alt="" class="img-fluid
+             h-100 about-image fade-right">
             <img src="{% static 'img/abstra3.png' %}" alt="" 
             class="position-absolute z-n1 bottom-0 end-0 opacity-25">
-        </div>
+          </div>
     </div>
 
 <div class="row cta my-5 fade-in">
 
 <div class="fs-3 container d-flex justify-content-center pb-5 w-75">
-  {{cta_section.content|safe}}
-
+  <div class="text-center">
+    {{cta_section.content|safe}}
+   <a href="tel:{{company.phone}}" class="fs-1 text-warning"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+</svg> {{company.phone}}</a>
+  </div>
 </div>
 <div class="position-relative d-flex justify-content-center">
   <img src="{{cta_section.banner.url}}" alt="" class="img-fluid">
@@ -61,6 +77,22 @@
   class="position-absolute z-n1 bottom-0 end-0 opacity-25">
 </div>
 
+</div>
+<div class="gallery">
+  <div class="row">
+    {% for image in images %}
+    <div class="col-md-3 col-sm-12 col-xs-12">
+      <img src="{{image.image1.url}}" alt="" class="img-fluid">
+    </div>
+    {% endfor %}
+    <div class="d-flex w-100 justify-content-center mt-5">
+      {% for service in services %}
+      <a href="{{ service.get_absolute_url }}#gallery" 
+      class="p-5 btn my-button btn-lg"
+      style="width: 150px; text-align: center;">{{ service.name }} Galerie</a>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% include 'contact.html' %}
 
@@ -110,9 +142,9 @@
 
   // Clean Config Palette Mapping (Matches sequential order of original items)
   const colorPalette = [
-    { leftBg: '#2e6ee6', rightBg: '#fce4ec' }, // Comfort colors
-    { leftBg: '#e65c2e', rightBg: '#d9edf7' }, // Design colors
-    { leftBg: '#1a4d2e', rightBg: '#f5f2ed' }  // Quality colors
+    { leftBg: '#f8d000', rightBg: '#fce4ec' }, // Comfort colors
+    { leftBg: '#0099ff', rightBg: '#d9edf7' }, // Design colors
+    { leftBg: '#102978', rightBg: '#f5f2ed' }  // Quality colors
   ];
 
   const speed = 800;  // CSS Transition duration
