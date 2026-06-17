@@ -14,7 +14,7 @@
   --yellow-main: #f8d000;
   --blue-main: #0099ff;
 
-  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-bg: rgba(255, 255, 255, 0.5);
   --card-dark: #161616;
   --border: rgba(255, 255, 255, 0.08);
 
@@ -270,7 +270,7 @@ a {
   line-height: 1.6;
 }
 .card h1 {
-  color: var(--yellow-main) !important;
+  color: #0b1020 !important;
 }
 
 .bottom-bar {
