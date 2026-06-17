@@ -90,37 +90,17 @@ a {
   overflow: hidden;
   background-color: var(--blue-main);
 
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 85%,
-    95% 87%,
-    90% 90%,
-    85% 92%,
-    80% 94%,
-    75% 95%,
-    70% 94%,
-    65% 92%,
-    60% 89%,
-    55% 86%,
-    50% 84%,
-    45% 83%,
-    40% 84%,
-    35% 87%,
-    30% 90%,
-    25% 93%,
-    20% 95%,
-    15% 96%,
-    10% 95%,
-    5% 92%,
-    0 88%
-  );
+  
 }
 
 .hero .col-md-6 {
   height: 100vh;
 }
-
+@media screen and (max-width: 768px) {
+  .hero .col-md-6 {
+    height: 50vh;
+  }
+}
 .hero-img {
   width: 100vw;
   height: 50vh;
@@ -286,7 +266,7 @@ a {
 }
 
 .card p {
-  color: var(--yellow-main) !important;
+  color: #0b1020 !important;
   line-height: 1.6;
 }
 .card h1 {
