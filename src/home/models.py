@@ -184,6 +184,11 @@ class AboutSection(models.Model):
         blank=True,
         null=True
     )
+    on_home = models.TextField(
+        verbose_name="Na stronę główną",
+        blank=True,
+        null=True
+    )
     
     class Meta:
         verbose_name = "O firmie"
