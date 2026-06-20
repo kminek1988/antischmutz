@@ -4,7 +4,12 @@
 
 {% block content %}
 
-
+<style>
+@media  screen and (max-width: 700px) {
+  .about_image {
+height: 80vh !important;  }
+}
+</style>
 <div class="container-fluid fade-group">
 
     <div class="row d-flex gap-0 hero fade-in">
@@ -40,23 +45,27 @@
       <div class="scene fade-left">
         <h1>Über uns</h1>
       </div>
-        <div class="col-md-6 col-sm-12 col-xs-12 my-3 d-flex align-items-center 
-        ustify-content-center fade-left">
+        <div class="col-md-12 col-sm-12 col-xs-12 my-3 d-flex align-items-center 
+        justify-content-center fade-left w-100"
+        style="position: relative; height: 100vh !important;">
 
             <p class="fs-3 p-5 d-block"
-            style="text-align: left;
-            background-color: rgba(0,0,0,0.9);">
-            {{ about_section.on_home|safe }}</p>
+            style="text-align: left;">
+            {{ about_section.on_home|safe }}
+            <a href="{% url 'about' %}" class="btn my-button mt-5">Mehr</a>
+            </p>
+            
      
-      
+                    <img src="{{ about_section.image.url }}" alt="" class="img-fluid
+             h-100 about-image fade-right position-absolute z-n1 about_image"
+             style="filter: opacity(0.3);">
           
-            <img src="{% static 'img/abstra3.png' %}" alt="" 
+            <img src="{% static 'img/abstra3.png' %}" alt="antischmutz" 
             class="position-absolute z-n1 bottom-0 end-0 opacity-25">
           </div>
-          <div class="col-md-6">
-              <img src="{{ about_section.image.url }}" alt="" class="img-fluid
-             h-100 about-image fade-right">
-          </div>
+         
+
+         
     </div>
 
 <div class="row cta my-5 fade-in">
